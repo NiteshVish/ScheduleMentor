@@ -12,6 +12,7 @@ public class Tester{
 		String pathdata="/Users/Nitesh/Myfiles/project/ScheduleMentor/list.txt";
 		DataLoader dl=new DataLoader(pathdata);
 		ArrayList<Task> taskList=dl.loadData();
-		System.out.println(taskList.get(0).toString());
+		dl.sortTask(taskList);
+		System.out.println(taskList.toString());
 	}
 }

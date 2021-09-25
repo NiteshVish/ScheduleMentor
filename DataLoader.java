@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.io.File;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
+import java.util.Collections;
 
 public class DataLoader{
 	private String path;
@@ -24,17 +25,20 @@ public class DataLoader{
 	      		int num=0;
 	      		int iadd=0;
 	      		if(data.length==5) {num=Integer.valueOf(data[0]);iadd++;}
+	      		String path=data[iadd];
+	      		String type=data[1+iadd];
 	      		String t=data[2+iadd];
-	      		LocalDateTime date=LocalDateTime.parse(t,ft);
+	      		LocalDateTime datetime=LocalDateTime.parse(t,ft);
 	      		int duration= Integer.valueOf(data[3+iadd]);
-	      		taskList.add(new Task(num,data[iadd],data[1+iadd],date,duration));
+	      		taskList.add(new Task(num,path,type,datetime,duration));
 	      	}
 	  	}
 	  	return taskList;
 	}
 
 	public ArrayList<Task> sortTask(ArrayList<Task> list){
-		return null;
+		Collections.sort(list);
+		return list;
 	}
 	
 }

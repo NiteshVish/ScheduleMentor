@@ -3,22 +3,18 @@ import java.io.File;
 import java.net.URL;
 import java.util.TimerTask;
 
-public class PDFFile extends TimerTask{
-	String path;
-	File pdfFile;
-
-	//Constructor
-	//path -absolute path of pdf file
-	public PDFFile(String path){
-		this.path=path;
-		pdfFile = new File(path);
+public class Journal  extends TimerTask{
+	private String path;
+	private File file;
+	public Journal(){
+		path="/Users/Nitesh/Myfiles/project/ScheduleMentor/myJournal.txt";
+		file=new File(path);
 	}
-
 	public void open(){
 		try {
 			if (isExists()) {
 				if (Desktop.isDesktopSupported()) {
-					Desktop.getDesktop().open(pdfFile);
+					Desktop.getDesktop().open(file);
 				} else {
 					System.out.println("Awt Desktop is not supported!");
 				}
@@ -35,7 +31,7 @@ public class PDFFile extends TimerTask{
 
 	public boolean isExists(){
 		try{
-			return pdfFile.exists();
+			return file.exists();
 		}catch(Exception e){
 			e.printStackTrace();
 			return false;
@@ -43,13 +39,9 @@ public class PDFFile extends TimerTask{
 		
 	}
 
-	public void print(String msg){
-		System.out.println(msg);
-	}
-
 	public void run()
     {
         open();
     }
-	
+
 }

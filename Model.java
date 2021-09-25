@@ -3,7 +3,7 @@ import java.time.LocalDateTime;
 public class Model{
 	
 }
-class Task{
+class Task implements Comparable<Task>{
 	private int num;
 	private String path;
 	private String type;
@@ -24,10 +24,31 @@ class Task{
 		this.type=type;
 		this.duration=duration;
 	}
+
+	public String getType(){
+		return type;
+	}
+
+	public String getPath(){
+		return path;
+	}
+	public int getDuration(){
+		return duration;
+	}
+	public LocalDateTime getDateTime(){
+		return datetime;
+	}
+
 	@Override
 	public String toString(){
-		String res="Task \n num= "+num+"\npath= "+path+"\ndate= "+datetime+"\ntype= "+type+" duration= "+duration;
+		String res="Task \n num= "+num+"\npath= "+path+"\ndate= "+datetime+"\ntype= "+type+" duration= "+duration+"\n";
 		return res;
 	}
+
+	@Override
+	public int compareTo(Task otherTask)
+    {
+        return this.datetime.compareTo(otherTask.datetime);
+    } 
 
 }
