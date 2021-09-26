@@ -2,8 +2,8 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.File;
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime;
+import java.text.SimpleDateFormat;  
+import java.util.Date;
 import java.util.Collections;
 
 public class DataLoader{
@@ -16,7 +16,7 @@ public class DataLoader{
 		File file=new File(path);
 		Scanner sc=new Scanner(file);
 		ArrayList<Task> taskList=new ArrayList<>();
-		DateTimeFormatter ft = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a");
+		SimpleDateFormat ft =new SimpleDateFormat("dd/MM/yyyy hh:mm a");
 		// DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a"); 
 		while (sc.hasNextLine()){
 	      	String[] data=sc.nextLine().split(",");
@@ -27,10 +27,10 @@ public class DataLoader{
 	      		if(data.length==5) {num=Integer.valueOf(data[0]);iadd++;}
 	      		String path=data[iadd];
 	      		String type=data[1+iadd];
-	      		String t=data[2+iadd];
-	      		LocalDateTime datetime=LocalDateTime.parse(t,ft);
+	      		String time=data[2+iadd];
+	      		Date date=ft.parse(time);
 	      		int duration= Integer.valueOf(data[3+iadd]);
-	      		taskList.add(new Task(num,path,type,datetime,duration));
+	      		taskList.add(new Task(num,path,type,date,duration));
 	      	}
 	  	}
 	  	return taskList;

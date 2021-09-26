@@ -2,8 +2,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Date;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+
 
 
 public class Application{
@@ -23,17 +22,16 @@ public class Application{
     		if(task.getType().compareTo(types[0])==0){
     			TimerTask ttask=new PDFFile(task.getPath());
 
-    			LocalDateTime time=task.getDateTime();
-    			Date taskDate=Date.from(time.toInstant(Util.getZoneOffset()));
+    			Date taskDate=task.getDate();
+    			// Date taskDate=Date.from(time.toInstant(Util.getZoneOffset()));
 
     			timer.schedule(ttask,taskDate);
 
     			//After completion of task open journal 
-    			LocalDateTime afterTaskTime=task.getDateTime().plusMinutes(task.getDuration());
-    			Date afterTaskDate=Date.from(afterTaskTime.toInstant(Util.getZoneOffset()));
-
+    			// LocalDateTime afterTaskTime=task.getDateTime().plusMinutes(task.getDuration());
+    			taskDate.setMinutes(taskDate.getMinutes()+task.getDuration());
     			TimerTask afterTTask=new Journal();
-    			timer.schedule(afterTTask,afterTaskDate);
+    			timer.schedule(afterTTask,taskDate);
 
 
     		// }else if(task.getType().compareTo(types[1])){
