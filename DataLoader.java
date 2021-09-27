@@ -21,15 +21,14 @@ public class DataLoader{
 		while (sc.hasNextLine()){
 	      	String[] data=sc.nextLine().split(",");
 	      	//sNo,path,type,time,duration
-	      	if(data.length==4 || data.length==5){
+	      	if(data.length==5){
 	      		int num=0;
-	      		int iadd=0;
-	      		if(data.length==5) {num=Integer.valueOf(data[0]);iadd++;}
-	      		String path=data[iadd];
-	      		String type=data[1+iadd];
-	      		String time=data[2+iadd];
+	      		num=Integer.valueOf(data[0]);
+	      		String path=data[1];
+	      		String type=data[2];
+	      		String time=data[3];
 	      		Date date=ft.parse(time);
-	      		int duration= Integer.valueOf(data[3+iadd]);
+	      		int duration= Integer.valueOf(data[4]);
 	      		taskList.add(new Task(num,path,type,date,duration));
 	      	}
 	  	}
